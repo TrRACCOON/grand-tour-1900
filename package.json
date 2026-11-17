@@ -1,0 +1,61 @@
+{
+  "name": "grand-tour-1900",
+  "productName": "Grand Tour 1900",
+  "version": "0.1.0",
+  "description": "Grand Tour 1900 – Eine Reise durch den Jugendstil Europas. Digitales Lernspiel der Studiengruppe Baugeschichte.",
+  "main": "main.js",
+  "author": "Studiengruppe Baugeschichte",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrRACCOON/grand-tour-1900.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build:map": "node tools/build-map.mjs",
+    "fetch:images": "node tools/fetch-images.mjs",
+    "test": "node tools/simulate.mjs",
+    "dist": "electron-builder --win --publish never",
+    "release": "electron-builder --win --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "peerjs": "^1.5.4",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "build": {
+    "appId": "de.studiengruppe.grandtour1900",
+    "productName": "Grand Tour 1900",
+    "artifactName": "Grand-Tour-1900-Setup-${version}.${ext}",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "shortcutName": "Grand Tour 1900"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "TrRACCOON",
+        "repo": "grand-tour-1900",
+        "releaseType": "release"
+      }
+    ]
+  }
+}

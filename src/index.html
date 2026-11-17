@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://*.peerjs.com wss://*.peerjs.com stun: turn:;">
+  <title>Grand Tour 1900</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Startmenü -->
+  <section id="screen-menu" class="screen menu-bg">
+    <div class="menu-card">
+      <div class="pc-label">Studienarbeit Baugeschichte · Jugendstil</div>
+      <h1>Grand Tour 1900</h1>
+      <p class="tagline">Eine Reise durch den Jugendstil Europas</p>
+      <svg class="whip" viewBox="0 0 240 30"><path d="M4,20 C50,0 90,2 120,18 S190,32 236,8" fill="none" stroke="#9A7630" stroke-width="2.5"/></svg>
+      <div class="col">
+        <button class="btn primary big" id="btn-local">An einem Bildschirm spielen</button>
+        <button class="btn big" id="btn-host">Online-Spiel erstellen</button>
+        <button class="btn big" id="btn-join">Online-Spiel beitreten</button>
+      </div>
+      <div class="row small-links">
+        <button class="link" id="btn-rules">Spielregeln</button>
+        <button class="link" id="btn-credits">Bildnachweise</button>
+      </div>
+      <div id="version" class="version"></div>
+    </div>
+  </section>
+
+  <!-- Lokales Spiel -->
+  <section id="screen-local" class="screen menu-bg">
+    <div class="menu-card">
+      <div class="pc-label">An einem Bildschirm</div>
+      <h2>Wer reist mit?</h2>
+      <p class="hint">2–4 Spieler oder Teams. Alle starten in München.</p>
+      <div id="local-players"></div>
+      <button class="link" id="local-add">+ Spieler hinzufügen</button>
+      <div class="row"><button class="btn" data-back>Zurück</button><button class="btn primary" id="local-start">Reise beginnen</button></div>
+    </div>
+  </section>
+
+  <!-- Online erstellen -->
+  <section id="screen-host-name" class="screen menu-bg">
+    <div class="menu-card">
+      <div class="pc-label">Online-Spiel erstellen</div>
+      <h2>Dein Name</h2>
+      <input id="host-name" maxlength="18" placeholder="Name oder Team">
+      <div class="row"><button class="btn" data-back>Zurück</button><button class="btn primary" id="host-go">Spiel erstellen</button></div>
+    </div>
+  </section>
+
+  <!-- Online beitreten -->
+  <section id="screen-join" class="screen menu-bg">
+    <div class="menu-card">
+      <div class="pc-label">Online-Spiel beitreten</div>
+      <h2>Raum-Code</h2>
+      <input id="join-code" maxlength="5" placeholder="z. B. K7MPQ" class="code-input">
+      <input id="join-name" maxlength="18" placeholder="Dein Name oder Team">
+      <div class="row"><button class="btn" data-back>Zurück</button><button class="btn primary" id="join-go">Beitreten</button></div>
+    </div>
+  </section>
+
+  <!-- Lobby -->
+  <section id="screen-lobby" class="screen menu-bg">
+    <div class="menu-card">
+      <div class="pc-label">Raum-Code</div>
+      <div id="lobby-code" class="big-code">…</div>
+      <p id="lobby-status" class="hint"></p>
+      <ul id="lobby-players" class="lobby-list"></ul>
+      <div class="row"><button class="btn" data-back>Verlassen</button><button class="btn primary" id="lobby-start">Spiel starten</button></div>
+    </div>
+  </section>
+
+  <!-- Regeln -->
+  <section id="screen-rules" class="screen menu-bg">
+    <div class="menu-card wide scroll">
+      <div class="pc-label">Spielregeln</div>
+      <h2>So funktioniert die Grand Tour</h2>
+      <p>Ihr seid Architekturstudenten um 1900 und reist durch die Jugendstil-Zentren Europas. Alle starten in <b>München</b>, wo ab 1896 die Zeitschrift „Jugend“ erschien.</p>
+      <h3>Ziel</h3>
+      <p>Wer als Erstes aus <b>allen acht Städten</b> eine Postkarte (Stadtkarte) gesammelt hat, gewinnt.</p>
+      <h3>Dein Zug</h3>
+      <ol>
+        <li><b>Würfeln und ziehen.</b> Du ziehst genau so viele Felder entlang der Bahnstrecken. Innerhalb eines Zuges darfst du nicht umkehren. Erreichst du eine Stadt, musst du dort anhalten – auch wenn die Augenzahl höher ist. Mögliche Zielfelder leuchten auf.</li>
+        <li><b>Prüfung in der Stadt.</b> Hast du aus dieser Stadt noch keine Postkarte, zieht das Spiel eine Frage (Multiple Choice, 30 Sekunden). Richtig: Du bekommst die Postkarte. Falsch: Die Karte kommt unter den Stapel – in der nächsten Runde darfst du es noch einmal versuchen oder weiterreisen.</li>
+        <li><b>Erneuter Besuch.</b> Eine weitere Postkarte derselben Stadt gibt es erst, wenn du zwischendurch eine andere Stadt besucht hast. Zusatzkarten schützen dich, wenn du eine Karte abgeben musst.</li>
+        <li><b>Ereignisfeld</b> (rote Raute): Du ziehst eine Ereigniskarte.</li>
+        <li><b>Schiffsroute Glasgow – Riga:</b> Die Überfahrt kostet einen ganzen Zug. Im nächsten Zug legst du an und machst deine Prüfung.</li>
+        <li><b>Duell:</b> Landest du auf dem Feld eines Mitspielers, zeigt das Spiel ein Bauwerk. Wer zuerst die richtige Stadt anklickt, darf ein Feld vorziehen.</li>
+      </ol>
+      <h3>Merkmal-Symbole</h3>
+      <p>✿ Florales Ornament · ∿ Peitschenhieb-Linie · ▦ Eisen und Glas · ◈ Keramik und Fliesen · ▣ Geometrische Strenge</p>
+      <h3>Online spielen</h3>
+      <p>Eine Person erstellt ein Online-Spiel und gibt den 5-stelligen Raum-Code weiter. Die anderen treten mit dem Code bei. Alle brauchen eine Internetverbindung.</p>
+      <div class="row"><button class="btn" data-back>Zurück</button></div>
+    </div>
+  </section>
+
+  <!-- Bildnachweise -->
+  <section id="screen-credits" class="screen menu-bg">
+    <div class="menu-card wide scroll">
+      <div class="pc-label">Bildnachweise</div>
+      <h2>Fotos von Wikimedia Commons</h2>
+      <p class="hint">Alle Fotos stehen unter freien Lizenzen (CC BY, CC BY-SA, CC0 oder gemeinfrei). Kartenbasis: Natural Earth (gemeinfrei). Schriften: Cormorant Garamond und Inter (SIL Open Font License).</p>
+      <ul id="credits-list" class="credits"></ul>
+      <div class="row"><button class="btn" data-back>Zurück</button></div>
+    </div>
+  </section>
+
+  <!-- Spiel -->
+  <section id="screen-game" class="screen game">
+    <div id="board" class="board"></div>
+    <aside class="side">
+      <div id="sidebar"></div>
+      <button class="link" id="btn-menu">Spiel verlassen</button>
+    </aside>
+    <div id="modal" class="modal"></div>
+    <div id="diary" class="modal"></div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+  <script src="vendor/peerjs.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

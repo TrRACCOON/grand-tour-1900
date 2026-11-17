@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+  <title>Grand Tour 1900 – Update</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--paper); display: flex; align-items: center; justify-content: center; height: 100vh; -webkit-app-region: drag; }
+    .box { text-align: center; width: 380px; }
+    h1 { font-size: 46px; color: var(--sage); }
+    .bar { height: 10px; background: #eadfc4; border-radius: 999px; overflow: hidden; margin: 18px 0 10px; }
+    .fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), #d3a94e); transition: width .3s; }
+    .bar.indet .fill { width: 30%; animation: slide 1.2s ease-in-out infinite; }
+    @keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+    #text { color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="pc-label">Eine Reise durch den Jugendstil Europas</div>
+    <h1>Grand Tour 1900</h1>
+    <div class="bar indet" id="bar"><div class="fill" id="fill"></div></div>
+    <div id="text">Suche nach Updates …</div>
+  </div>
+  <script>
+    window.app.onUpdateStatus(s => {
+      document.getElementById('text').textContent = s.text;
+      const bar = document.getElementById('bar');
+      if (typeof s.progress === 'number') {
+        bar.classList.remove('indet');
+        document.getElementById('fill').style.width = s.progress + '%';
+      }
+    });
+  </script>
+</body>
+</html>

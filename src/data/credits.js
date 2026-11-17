@@ -1,0 +1,276 @@
+// Automatisch erzeugt von tools/fetch-images.mjs
+export const CREDITS = {
+  "volksbad": {
+    "title": "File:Müllersches Volksbad Munich at Dusk, July 2018.jpg",
+    "artist": "Martin Falbisoner",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:M%C3%BCllersches_Volksbad_Munich_at_Dusk,_July_2018.jpg"
+  },
+  "elvira": {
+    "title": "File:Empfangszimmer im Hof-Atelier Elvira mit Durchblick zum Treppenraum, Von-der-Tann-Straße 15.jpg",
+    "artist": "Unknown authorUnknown author",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Empfangszimmer_im_Hof-Atelier_Elvira_mit_Durchblick_zum_Treppenraum,_Von-der-Tann-Stra%C3%9Fe_15.jpg"
+  },
+  "ainmiller": {
+    "title": "File:Ainmiller Str. 22 Muenchen-1.jpg",
+    "artist": "Rufus46",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ainmiller_Str._22_Muenchen-1.jpg"
+  },
+  "secession": {
+    "title": "File:Wiener Secessionsgebäude Kuppel Blattwerk 20230811 01.jpg",
+    "artist": "Uoaei1",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wiener_Secessionsgeb%C3%A4ude_Kuppel_Blattwerk_20230811_01.jpg"
+  },
+  "majolika": {
+    "title": "File:Wien-Linke Wienzeile-36-Nr 40-Majolikahaus-2007-gje.jpg",
+    "artist": "Gerd Eichmann",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wien-Linke_Wienzeile-36-Nr_40-Majolikahaus-2007-gje.jpg"
+  },
+  "postsparkasse": {
+    "title": "File:Österreichische Postsparkasse Interior.jpg",
+    "artist": "Kalkot",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%C3%96sterreichische_Postsparkasse_Interior.jpg"
+  },
+  "steinhof": {
+    "title": "File:20250503 Kirche am Steinhof 03.jpg",
+    "artist": "Flocci Nivis",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20250503_Kirche_am_Steinhof_03.jpg"
+  },
+  "karlsplatz": {
+    "title": "File:Otto Wagner Pavillon - Karlsplatz.jpg",
+    "artist": "Pudelek",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Otto_Wagner_Pavillon_-_Karlsplatz.jpg"
+  },
+  "tassel": {
+    "title": "File:Belgique - Bruxelles - Hôtel Tassel - 02.jpg",
+    "artist": "EmDee",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Belgique_-_Bruxelles_-_H%C3%B4tel_Tassel_-_02.jpg"
+  },
+  "solvay": {
+    "title": "File:Hôtel Solvay (2712362418).jpg",
+    "artist": "Steve Cadman from London, U.K.",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_Solvay_(2712362418).jpg"
+  },
+  "saintcyr": {
+    "title": "File:Maison Saint-Cyr (DSCF7558).jpg",
+    "artist": "Trougnouf (Benoit Brummer)",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Maison_Saint-Cyr_(DSCF7558).jpg"
+  },
+  "stoclet": {
+    "title": "File:Palais Stoclet, vue ensemble.JPG",
+    "artist": "Busoni",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Palais_Stoclet,_vue_ensemble.JPG"
+  },
+  "oldengland": {
+    "title": "File:Old England facade, Brussels (DSCF7544).jpg",
+    "artist": "Trougnouf (Benoit Brummer)",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Old_England_facade,_Brussels_(DSCF7544).jpg"
+  },
+  "metro": {
+    "title": "File:Metro station entrance (édicule Guimard) Porte Dauphine Paris 16e 001.jpg",
+    "artist": "Moonik",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Metro_station_entrance_(%C3%A9dicule_Guimard)_Porte_Dauphine_Paris_16e_001.jpg"
+  },
+  "beranger": {
+    "title": "File:Le Castel Béranger (Hector Guimard) (5478749921).jpg",
+    "artist": "Jean-Pierre Dalbéra from Paris, France",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Le_Castel_B%C3%A9ranger_(Hector_Guimard)_(5478749921).jpg"
+  },
+  "samaritaine": {
+    "title": "File:La Samaritaine façade quai du Louvre.jpg",
+    "artist": "Arthur Weidmann",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:La_Samaritaine_fa%C3%A7ade_quai_du_Louvre.jpg"
+  },
+  "lavirotte": {
+    "title": "File:XDSC 7288-29-av-Rapp-paris-7.jpg",
+    "artist": "Pline",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:XDSC_7288-29-av-Rapp-paris-7.jpg"
+  },
+  "grandpalais": {
+    "title": "File:Grand Palais - PA00088877 - Bonhams 2013 - Vue d'ensemble - 007.jpg",
+    "artist": "Thesupermat",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Grand_Palais_-_PA00088877_-_Bonhams_2013_-_Vue_d%27ensemble_-_007.jpg"
+  },
+  "batllo": {
+    "title": "File:Casa Batlló 01.jpg",
+    "artist": "Bernard Gagnon",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Casa_Batll%C3%B3_01.jpg"
+  },
+  "mila": {
+    "title": "File:Casa Mila La Pedrera Antoni Gaudi Barcelona facade.jpg",
+    "artist": "Vescoolz",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Casa_Mila_La_Pedrera_Antoni_Gaudi_Barcelona_facade.jpg"
+  },
+  "palau": {
+    "title": "File:Palau de la Musica May 2026-4.jpg",
+    "artist": "Alvesgaspar",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Palau_de_la_Musica_May_2026-4.jpg"
+  },
+  "santpau": {
+    "title": "File:Cupolas of Pavelló de Sant Rafael and Pavelló de Sant Manuel, Hospital de Sant Pau, Barcelona, Spain.jpg",
+    "artist": "Julian Lupyan",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Cupolas_of_Pavell%C3%B3_de_Sant_Rafael_and_Pavell%C3%B3_de_Sant_Manuel,_Hospital_de_Sant_Pau,_Barcelona,_Spain.jpg"
+  },
+  "gsa": {
+    "title": "File:Glasgow School of Art Mackintosh Building (27459187647).jpg",
+    "artist": "Paul Trafford",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Glasgow_School_of_Art_Mackintosh_Building_(27459187647).jpg"
+  },
+  "willow": {
+    "title": "File:Willow Tea Rooms interior 1, Sauchiehall Street, Glasgow.jpg",
+    "artist": "LornaMCampbell",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Willow_Tea_Rooms_interior_1,_Sauchiehall_Street,_Glasgow.jpg"
+  },
+  "hillhouse": {
+    "title": "File:HillHouse.jpg",
+    "artist": "unbekannt",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:HillHouse.jpg"
+  },
+  "scotlandstreet": {
+    "title": "File:Scotland Street School infants entrance DSCN8975.jpg",
+    "artist": "AlasdairW",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Scotland_Street_School_infants_entrance_DSCN8975.jpg"
+  },
+  "queenscross": {
+    "title": "File:Queens Cross Church07a.jpg",
+    "artist": "dave souza",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Queens_Cross_Church07a.jpg"
+  },
+  "lighthouse": {
+    "title": "File:The Glasgow Lighthouse 548191.jpg",
+    "artist": "Thomas Nugent",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Glasgow_Lighthouse_548191.jpg"
+  },
+  "elh": {
+    "title": "File:Ernst-Ludwig-Haus (Museum Künstlerkolonie) - Mathildenhöhe - Darmstadt, Germany - DSC01373.jpg",
+    "artist": "Daderot",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Ernst-Ludwig-Haus_(Museum_K%C3%BCnstlerkolonie)_-_Mathildenh%C3%B6he_-_Darmstadt,_Germany_-_DSC01373.jpg"
+  },
+  "hochzeitsturm": {
+    "title": "File:Hochzeitsturm Darmstadt 2022.jpg",
+    "artist": "Thomas Wolf, www.foto-tw.de",
+    "license": "CC BY-SA 3.0 de",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Hochzeitsturm_Darmstadt_2022.jpg"
+  },
+  "behrens": {
+    "title": "File:Haus Behrens - Darmstadt, Germany - DSC05972.jpg",
+    "artist": "Daderot",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Haus_Behrens_-_Darmstadt,_Germany_-_DSC05972.jpg"
+  },
+  "ausstellung": {
+    "title": "File:Ausstellungsgebäude Mathildenhöhe-Kuppel.jpg",
+    "artist": "Martin Kraft",
+    "license": "CC BY-SA 3.0 de",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Ausstellungsgeb%C3%A4ude_Mathildenh%C3%B6he-Kuppel.jpg"
+  },
+  "alb13": {
+    "title": "File:Edificio modernista en Alberta iela 13, Riga, Letonia, 2012-08-07, DD 02.jpg",
+    "artist": "Diego Delso",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Edificio_modernista_en_Alberta_iela_13,_Riga,_Letonia,_2012-08-07,_DD_02.jpg"
+  },
+  "alb2a": {
+    "title": "File:Edificio modernista en Alberta iela 2a, Riga, Letonia, 2012-08-07, DD 02.JPG",
+    "artist": "Diego Delso",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Edificio_modernista_en_Alberta_iela_2a,_Riga,_Letonia,_2012-08-07,_DD_02.JPG"
+  },
+  "eliz10b": {
+    "title": "File:Riga Elizabetes iela 10B,.JPG",
+    "artist": "PIERRE ANDRE LECLERCQ",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Riga_Elizabetes_iela_10B,.JPG"
+  },
+  "alb12": {
+    "title": "File:6802 LVA Riga art nouveau staircase.jpg",
+    "artist": "Virtual-Pano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:6802_LVA_Riga_art_nouveau_staircase.jpg"
+  },
+  "kammerspiele": {
+    "title": "File:Münchner Kammerspiele.jpg",
+    "artist": "Christian Wolf (www.c-w-design.de)",
+    "license": "CC BY-SA 3.0 de",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:M%C3%BCnchner_Kammerspiele.jpg"
+  },
+  "hortahaus": {
+    "title": "File:Façade musée Horta Bruxelles.jpg",
+    "artist": "Eliedion",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_mus%C3%A9e_Horta_Bruxelles.jpg"
+  },
+  "parkguell": {
+    "title": "File:Barcelona Parc Güell el drac.jpg",
+    "artist": "Isiwal",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Barcelona_Parc_G%C3%BCell_el_drac.jpg"
+  }
+};

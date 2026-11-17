@@ -1,0 +1,211 @@
+// =====================================================================
+//  INHALTE – Gebäude, Prüfungsfragen, Ereigniskarten
+//  Hier können Fragen ergänzt oder korrigiert werden.
+//  Jede Frage: { b: Gebäude-ID oder null, q: Frage, a: richtige Antwort,
+//                w: [3 falsche Antworten], info: kurzer Erklärtext }
+//  Hinweis: Baujahre sind Richtwerte – vor der Abgabe mit Quellen prüfen.
+// =====================================================================
+
+export const MERKMALE = {
+  floral: { name: 'Florales Ornament', icon: '✿' },
+  peitsche: { name: 'Peitschenhieb-Linie', icon: '∿' },
+  eisenglas: { name: 'Eisen und Glas', icon: '▦' },
+  keramik: { name: 'Keramik und Fliesen', icon: '◈' },
+  geometrie: { name: 'Geometrische Strenge', icon: '▣' },
+};
+
+// commons: Suchbegriff für Wikimedia Commons (tools/fetch-images.mjs)
+export const BUILDINGS = {
+  // München
+  volksbad: { city: 'MU', name: 'Müller’sches Volksbad', architect: 'Carl Hocheder', year: '1897–1901', m: 'floral', commons: 'Müllersches Volksbad München' },
+  kammerspiele: { city: 'MU', name: 'Münchner Kammerspiele', architect: 'Richard Riemerschmid (Innenraum)', year: '1900–1901', m: 'floral', commons: 'Münchner Kammerspiele Schauspielhaus Maximilianstraße' },
+  elvira: { city: 'MU', name: 'Atelier Elvira', architect: 'August Endell', year: '1897–1898, 1944 zerstört', m: 'peitsche', commons: 'Atelier Elvira Endell', historic: true },
+  ainmiller: { city: 'MU', name: 'Ainmillerstraße 22', architect: 'Henry Helbig, Ernst Haiger', year: '1899–1900', m: 'floral', commons: 'Ainmillerstraße 22 München' },
+  // Wien
+  secession: { city: 'WI', name: 'Secessionsgebäude', architect: 'Joseph Maria Olbrich', year: '1897–1898', m: 'geometrie', commons: 'Wiener Secession building' },
+  majolika: { city: 'WI', name: 'Majolikahaus', architect: 'Otto Wagner', year: '1898–1899', m: 'keramik', commons: 'Majolikahaus Wien Linke Wienzeile' },
+  postsparkasse: { city: 'WI', name: 'Postsparkasse', architect: 'Otto Wagner', year: '1904–1906', m: 'eisenglas', commons: 'Österreichische Postsparkasse Kassenhalle' },
+  steinhof: { city: 'WI', name: 'Kirche am Steinhof', architect: 'Otto Wagner', year: '1904–1907', m: 'geometrie', commons: 'Kirche am Steinhof Wien' },
+  karlsplatz: { city: 'WI', name: 'Stadtbahn-Pavillons Karlsplatz', architect: 'Otto Wagner', year: '1898–1899', m: 'floral', commons: 'Otto Wagner Pavillon Karlsplatz' },
+  // Brüssel
+  tassel: { city: 'BR', name: 'Hôtel Tassel', architect: 'Victor Horta', year: '1893–1894', m: 'peitsche', commons: 'Hôtel Tassel Bruxelles' },
+  solvay: { city: 'BR', name: 'Hôtel Solvay', architect: 'Victor Horta', year: '1895–1900', m: 'eisenglas', commons: 'Hôtel Solvay Avenue Louise' },
+  saintcyr: { city: 'BR', name: 'Maison Saint-Cyr', architect: 'Gustave Strauven', year: '1901–1903', m: 'peitsche', commons: 'Maison Saint-Cyr Bruxelles' },
+  hortahaus: { city: 'BR', name: 'Maison & Atelier Horta', architect: 'Victor Horta', year: '1898–1901', m: 'peitsche', commons: 'Horta Museum Saint-Gilles facade' },
+  stoclet: { city: 'BR', name: 'Palais Stoclet', architect: 'Josef Hoffmann', year: '1905–1911', m: 'geometrie', commons: 'Palais Stoclet' },
+  oldengland: { city: 'BR', name: 'Kaufhaus Old England', architect: 'Paul Saintenoy', year: '1899', m: 'eisenglas', commons: 'Old England building Brussels' },
+  // Paris
+  metro: { city: 'PA', name: 'Métro-Eingänge', architect: 'Hector Guimard', year: 'ab 1900', m: 'floral', commons: 'Guimard Métro entrance Abbesses' },
+  beranger: { city: 'PA', name: 'Castel Béranger', architect: 'Hector Guimard', year: '1895–1898', m: 'peitsche', commons: 'Castel Béranger' },
+  samaritaine: { city: 'PA', name: 'La Samaritaine', architect: 'Frantz Jourdain', year: '1905–1910', m: 'eisenglas', commons: 'Samaritaine verrière' },
+  lavirotte: { city: 'PA', name: 'Immeuble Lavirotte', architect: 'Jules Lavirotte', year: '1900–1901', m: 'keramik', commons: 'Immeuble Lavirotte 29 avenue Rapp' },
+  grandpalais: { city: 'PA', name: 'Grand Palais', architect: 'Deglane, Louvet, Thomas', year: '1897–1900', m: 'eisenglas', commons: 'Grand Palais nef verrière' },
+  // Barcelona
+  batllo: { city: 'BA', name: 'Casa Batlló', architect: 'Antoni Gaudí', year: 'Umbau 1904–1906', m: 'keramik', commons: 'Casa Batlló facade' },
+  mila: { city: 'BA', name: 'Casa Milà', architect: 'Antoni Gaudí', year: '1906–1912', m: 'peitsche', commons: 'Casa Milà La Pedrera facade' },
+  palau: { city: 'BA', name: 'Palau de la Música Catalana', architect: 'Lluís Domènech i Montaner', year: '1905–1908', m: 'eisenglas', commons: 'Palau de la Música Catalana skylight' },
+  santpau: { city: 'BA', name: 'Hospital de Sant Pau', architect: 'Lluís Domènech i Montaner', year: '1902–1930', m: 'keramik', commons: 'Hospital de la Santa Creu i Sant Pau' },
+  parkguell: { city: 'BA', name: 'Park Güell', architect: 'Antoni Gaudí', year: '1900–1914', m: 'keramik', commons: 'Park Güell bench trencadís' },
+  // Glasgow
+  gsa: { city: 'GL', name: 'Glasgow School of Art', architect: 'Charles Rennie Mackintosh', year: '1897–1909', m: 'geometrie', commons: 'Glasgow School of Art Mackintosh building' },
+  willow: { city: 'GL', name: 'Willow Tea Rooms', architect: 'Charles Rennie Mackintosh', year: '1903', m: 'geometrie', commons: 'Willow Tea Rooms Sauchiehall Street' },
+  hillhouse: { city: 'GL', name: 'Hill House (Helensburgh)', architect: 'Charles Rennie Mackintosh', year: '1902–1904', m: 'geometrie', commons: 'Hill House Helensburgh' },
+  scotlandstreet: { city: 'GL', name: 'Scotland Street School', architect: 'Charles Rennie Mackintosh', year: '1903–1906', m: 'geometrie', commons: 'Scotland Street School Museum' },
+  queenscross: { city: 'GL', name: 'Queen’s Cross Church', architect: 'Charles Rennie Mackintosh', year: '1897–1899', m: 'geometrie', commons: 'Queens Cross Church Glasgow' },
+  lighthouse: { city: 'GL', name: 'The Lighthouse (Glasgow Herald)', architect: 'Charles Rennie Mackintosh', year: '1895', m: 'geometrie', commons: 'The Lighthouse Glasgow Mackintosh tower' },
+  // Darmstadt
+  elh: { city: 'DA', name: 'Ernst-Ludwig-Haus', architect: 'Joseph Maria Olbrich', year: '1899–1901', m: 'geometrie', commons: 'Ernst-Ludwig-Haus Darmstadt' },
+  hochzeitsturm: { city: 'DA', name: 'Hochzeitsturm', architect: 'Joseph Maria Olbrich', year: '1907–1908', m: 'geometrie', commons: 'Hochzeitsturm Darmstadt' },
+  behrens: { city: 'DA', name: 'Haus Behrens', architect: 'Peter Behrens', year: '1901', m: 'geometrie', commons: 'Haus Behrens Darmstadt' },
+  ausstellung: { city: 'DA', name: 'Ausstellungsgebäude Mathildenhöhe', architect: 'Joseph Maria Olbrich', year: '1908', m: 'geometrie', commons: 'Ausstellungsgebäude Mathildenhöhe Darmstadt' },
+  // Riga
+  alb13: { city: 'RI', name: 'Alberta iela 13', architect: 'Michail Eisenstein', year: '1904', m: 'floral', commons: 'Alberta iela 13 Riga' },
+  alb2a: { city: 'RI', name: 'Alberta iela 2a', architect: 'Michail Eisenstein', year: '1906', m: 'floral', commons: 'Alberta iela 2a Riga' },
+  eliz10b: { city: 'RI', name: 'Elizabetes iela 10b', architect: 'Michail Eisenstein', year: '1903', m: 'floral', commons: 'Elizabetes iela 10b Riga' },
+  alb12: { city: 'RI', name: 'Alberta iela 12 (Jugendstilmuseum)', architect: 'Konstantīns Pēkšēns', year: '1903', m: 'floral', commons: 'Riga Art Nouveau Museum Alberta 12' },
+};
+
+export const QUESTIONS = {
+  MU: [
+    { b: 'volksbad', q: 'Wer stiftete das Müller’sche Volksbad?', a: 'Der Ingenieur Karl Müller', w: ['Franz von Stuck', 'Prinzregent Luitpold', 'Georg Hirth'], info: 'Karl Müller schenkte der Stadt das Bad – daher der Name.' },
+    { b: 'volksbad', q: 'Wofür wurde das Volksbad gebaut?', a: 'Als öffentliches Hallenbad für die Bevölkerung', w: ['Als Kurhotel für den Adel', 'Als Brauerei', 'Als Bahnhof'], info: 'Viele Münchner hatten um 1900 kein eigenes Bad – das Volksbad sollte Hygiene für alle bringen.' },
+    { b: 'volksbad', q: 'An welchem Fluss liegt das Volksbad?', a: 'An der Isar', w: ['An der Donau', 'Am Inn', 'Am Lech'], info: 'Das Bad liegt an der Ludwigsbrücke direkt an der Isar.' },
+    { b: 'kammerspiele', q: 'Welcher Raum der Münchner Kammerspiele gilt als Jugendstil-Juwel?', a: 'Der Zuschauerraum mit pflanzenhaften Ornamenten', w: ['Der Bühnenturm', 'Die Kassenhalle', 'Der Keller'], info: 'Richard Riemerschmid gestaltete den Zuschauerraum mit organischen, floralen Formen.' },
+    { b: 'kammerspiele', q: 'Welche Werkstätten gründete Riemerschmid 1898 mit?', a: 'Vereinigte Werkstätten für Kunst im Handwerk', w: ['Wiener Werkstätte', 'Bauhaus', 'Glasgow School of Art'], info: 'Die Vereinigten Werkstätten wollten Kunst und Handwerk für den Alltag verbinden.' },
+    { b: 'elvira', q: 'Was machte die Fassade des Atelier Elvira berühmt?', a: 'Ein riesiges, wellenförmiges Stuckornament', w: ['Eine vergoldete Kuppel', 'Majolika-Fliesen', 'Gusseiserne Balkone'], info: 'Das abstrakte Ornament von August Endell wurde oft als Drache gedeutet.' },
+    { b: 'elvira', q: 'Was befand sich im Atelier Elvira?', a: 'Ein Fotoatelier', w: ['Eine Brauerei', 'Ein Theater', 'Eine Kunstschule'], info: 'Das „Hof-Atelier Elvira“ gehörte den Fotografinnen Anita Augspurg und Sophia Goudstikker.' },
+    { b: 'elvira', q: 'Warum kann man das Atelier Elvira heute nicht mehr besichtigen?', a: 'Es wurde im Zweiten Weltkrieg zerstört', w: ['Es brannte 1990 ab', 'Es wich einer U-Bahn-Station', 'Es wurde nach Berlin versetzt'], info: 'Das Ornament wurde schon 1937 entfernt, das Gebäude 1944 zerstört.' },
+    { b: 'ainmiller', q: 'Was schmückt die Fassade der Ainmillerstraße 22?', a: 'Farbige, florale Stuckornamente', w: ['Aluminium-Nieten', 'Trencadís-Mosaik', 'Gusseiserne Balkone'], info: 'Das Schwabinger Mietshaus gilt als eine der schönsten Jugendstilfassaden Münchens.' },
+    { b: null, q: 'Woher hat der „Jugendstil“ seinen Namen?', a: 'Von der Münchner Zeitschrift „Jugend“', w: ['Von einer Wiener Jugendbewegung', 'Von einem Architekten namens Jugend', 'Von der Weltausstellung 1900'], info: 'Die Zeitschrift „Jugend“ erschien ab 1896 in München.' },
+    { b: null, q: 'Wer gründete 1896 die Zeitschrift „Jugend“?', a: 'Georg Hirth', w: ['Otto Wagner', 'Victor Horta', 'Franz von Stuck'], info: 'Der Verleger Georg Hirth gab die „Jugend“ in München heraus.' },
+    { b: null, q: 'Welche Künstlervereinigung wurde 1892 in München gegründet?', a: 'Die Münchner Secession', w: ['Die Wiener Secession', 'Der Blaue Reiter', 'Die Brücke'], info: 'Die Münchner Secession war die erste Secession – Wien folgte 1897.' },
+  ],
+  WI: [
+    { b: 'secession', q: 'Was krönt das Secessionsgebäude?', a: 'Eine Kuppel aus vergoldeten Lorbeerblättern', w: ['Eine Glaskuppel', 'Ein spitzer Turm', 'Eine Reiterfigur'], info: 'Die Kuppel besteht aus über 3000 vergoldeten Blättern.' },
+    { b: 'secession', q: 'Wie lautet das Motto über dem Eingang der Secession?', a: '„Der Zeit ihre Kunst, der Kunst ihre Freiheit“', w: ['„Form folgt Funktion“', '„Ornament ist Verbrechen“', '„Kunst für alle“'], info: 'Das Motto stammt vom Kunstkritiker Ludwig Hevesi.' },
+    { b: 'secession', q: 'Welchen Spitznamen gaben die Wiener der goldenen Kuppel?', a: '„Krauthappel“ (Krautkopf)', w: ['„Zitronenpresse“', '„Goldene Zwiebel“', '„Sonnenschirm“'], info: 'Die Wiener spotteten über das „goldene Krauthappel“.' },
+    { b: 'secession', q: 'Welches Werk von Gustav Klimt ist in der Secession zu sehen?', a: 'Der Beethovenfries', w: ['Der Kuss', 'Der Stocletfries', 'Judith'], info: 'Klimt schuf den Fries 1902 für eine Beethoven-Ausstellung.' },
+    { b: null, q: 'Wer war 1897 erster Präsident der Wiener Secession?', a: 'Gustav Klimt', w: ['Otto Wagner', 'Adolf Loos', 'Egon Schiele'], info: 'Klimt führte die jungen Künstler beim Bruch mit dem Künstlerhaus an.' },
+    { b: 'majolika', q: 'Welches Material gibt dem Majolikahaus seinen Namen?', a: 'Glasierte Keramikfliesen mit Blumenmuster', w: ['Marmorplatten', 'Gusseisen', 'Buntglasfenster'], info: 'Die witterungsbeständigen Majolika-Fliesen bedecken die ganze Fassade.' },
+    { b: 'majolika', q: 'An welcher Straße steht das Majolikahaus?', a: 'Linke Wienzeile', w: ['Ringstraße', 'Kärntner Straße', 'Mariahilfer Straße'], info: 'Linke Wienzeile 40 – direkt am Naschmarkt.' },
+    { b: 'postsparkasse', q: 'Womit sind die Fassadenplatten der Postsparkasse sichtbar befestigt?', a: 'Mit Bolzen mit Aluminiumköpfen', w: ['Mit gusseisernen Haken', 'Mit Bronzeklammern', 'Nur mit Mörtel'], info: 'Otto Wagner machte die Konstruktion selbst zum Schmuck.' },
+    { b: 'postsparkasse', q: 'Was überdeckt die Kassenhalle der Postsparkasse?', a: 'Ein Glasdach', w: ['Eine Holzkassettendecke', 'Eine Steinkuppel', 'Ein Deckenfresko'], info: 'Die lichtdurchflutete Halle gilt als frühes Meisterwerk der Moderne.' },
+    { b: 'steinhof', q: 'Zu welcher Einrichtung gehört die Kirche am Steinhof?', a: 'Zu einer psychiatrischen Klinik', w: ['Zu einer Universität', 'Zu einem Kloster', 'Zu einem Bahnhof'], info: 'Wagner baute sie für die Heil- und Pflegeanstalt Am Steinhof.' },
+    { b: 'karlsplatz', q: 'Wofür wurden die Pavillons am Karlsplatz gebaut?', a: 'Als Stationen der Wiener Stadtbahn', w: ['Als Zeitungskioske', 'Als Musikpavillons', 'Als Badehäuser'], info: 'Otto Wagner gestaltete das gesamte Stadtbahnnetz.' },
+    { b: 'karlsplatz', q: 'Welches Blumenmotiv schmückt die Karlsplatz-Pavillons?', a: 'Sonnenblumen', w: ['Lilien', 'Rosen', 'Mohnblumen'], info: 'Goldene Sonnenblumen auf weißem Marmor und grünem Eisen.' },
+  ],
+  BR: [
+    { b: 'tassel', q: 'Warum gilt das Hôtel Tassel als Meilenstein?', a: 'Es gilt als erstes Art-Nouveau-Wohnhaus', w: ['Es war das erste Hochhaus Europas', 'Es war der erste Stahlbetonbau', 'Es ist das älteste Rathaus Belgiens'], info: 'Victor Horta baute es 1893–1894.' },
+    { b: 'tassel', q: 'Für wen baute Horta das Hôtel Tassel?', a: 'Für einen Professor', w: ['Für König Leopold II.', 'Für eine Chemie-Industriellenfamilie', 'Für einen Maler'], info: 'Bauherr war Émile Tassel, Professor an der Brüsseler Universität.' },
+    { b: 'tassel', q: 'Was ist das Besondere am Treppenhaus des Hôtel Tassel?', a: 'Sichtbare Eisenstützen und Peitschenhieb-Linien', w: ['Eine barocke Marmortreppe', 'Eine hölzerne Wendeltreppe', 'Ein früher Aufzug'], info: 'Linien aus Eisen, Mosaik und Wandmalerei verschmelzen zu einem Ganzen.' },
+    { b: 'solvay', q: 'Für welche Familie wurde das Hôtel Solvay gebaut?', a: 'Für eine Chemie-Industriellenfamilie', w: ['Für einen Professor', 'Für die Königsfamilie', 'Für die Familie Stoclet'], info: 'Armand Solvay war Sohn des Chemie-Industriellen Ernest Solvay.' },
+    { b: 'solvay', q: 'Was prägt die Fassade des Hôtel Solvay neben dem Naturstein?', a: 'Geschwungene Balkone und Stützen aus Eisen', w: ['Majolika-Fliesen', 'Trencadís-Mosaik', 'Aluminium-Nieten'], info: 'Große Fensterflächen und sichtbares Eisen machen die Fassade leicht.' },
+    { b: 'saintcyr', q: 'Was ist an der Maison Saint-Cyr ungewöhnlich?', a: 'Sie ist nur etwa 4 m breit', w: ['Sie ist kreisrund', 'Sie hat keine Fenster', 'Sie besteht ganz aus Glas'], info: 'Die schmale Fassade ist fast komplett mit verschlungenem Eisenwerk überzogen.' },
+    { b: 'saintcyr', q: 'Für wen wurde die Maison Saint-Cyr gebaut?', a: 'Für einen Maler', w: ['Für einen Fotografen', 'Für einen Komponisten', 'Für einen Bürgermeister'], info: 'Bauherr war der Maler Georges Léonard de Saint-Cyr.' },
+    { b: 'hortahaus', q: 'Was befindet sich heute in Hortas eigenem Wohnhaus?', a: 'Das Horta-Museum', w: ['Das Rathaus von Saint-Gilles', 'Ein Hotel', 'Ein Bahnhof'], info: 'Haus und Atelier Horta entstanden 1898–1901.' },
+    { b: 'hortahaus', q: 'Seit wann sind Hortas Hauptwerke UNESCO-Welterbe?', a: 'Seit 2000', w: ['Seit 1980', 'Seit 2021', 'Seit 1997'], info: 'Dazu gehören Hôtel Tassel, Hôtel Solvay, Hôtel van Eetvelde und Hortas Haus.' },
+    { b: 'stoclet', q: 'Wer baute das Palais Stoclet in Brüssel?', a: 'Josef Hoffmann aus Wien', w: ['Victor Horta', 'Antoni Gaudí', 'Charles Rennie Mackintosh'], info: 'Ein Wiener Gesamtkunstwerk mitten in Brüssel – streng geometrisch.' },
+    { b: 'stoclet', q: 'Wer schuf den Mosaikfries im Speisesaal des Palais Stoclet?', a: 'Gustav Klimt', w: ['Alfons Mucha', 'Henri de Toulouse-Lautrec', 'Franz von Stuck'], info: 'Der „Stocletfries“ zeigt u. a. den Lebensbaum.' },
+    { b: 'oldengland', q: 'Welches Museum befindet sich heute im Kaufhaus Old England?', a: 'Das Musikinstrumentenmuseum', w: ['Das Comicmuseum', 'Das Horta-Museum', 'Das Magritte-Museum'], info: 'Das Kaufhaus von Paul Saintenoy (1899) zeigt viel Eisen und Glas.' },
+  ],
+  PA: [
+    { b: 'metro', q: 'Welche Formen und welches Material nutzte Guimard für die Métro-Eingänge?', a: 'Grün gestrichenes Gusseisen in Pflanzenformen', w: ['Marmor und Blattgold', 'Holz und Ziegel', 'Sichtbeton'], info: 'Die Leuchten sehen aus wie Blütenknospen.' },
+    { b: 'metro', q: 'Wer entwarf die berühmten Pariser Métro-Eingänge?', a: 'Hector Guimard', w: ['Gustave Eiffel', 'Victor Horta', 'Frantz Jourdain'], info: 'Die ersten Eingänge entstanden ab 1900.' },
+    { b: 'metro', q: 'Welches Wort steht auf vielen Guimard-Eingängen?', a: '„Métropolitain“', w: ['„Métro Paris“', '„Chemin de fer“', '„Art Nouveau“'], info: 'Auch die Schrift entwarf Guimard selbst.' },
+    { b: 'beranger', q: 'Was entwarf Guimard beim Castel Béranger außer der Fassade?', a: 'Alles bis ins Detail – ein Gesamtkunstwerk', w: ['Nur den Garten', 'Nur das Dach', 'Gar nichts weiter'], info: 'Von Türgriffen bis zu Tapeten stammt alles von Guimard.' },
+    { b: 'beranger', q: 'Welchen Preis gewann das Castel Béranger?', a: 'Einen Fassadenwettbewerb der Stadt Paris', w: ['Den Grand Prix der Weltausstellung', 'Den Prix de Rome', 'Einen Nobelpreis'], info: 'Der Preis machte Guimard schlagartig bekannt.' },
+    { b: 'beranger', q: 'Welchen Spitznamen bekam das Castel Béranger?', a: '„Castel Dérangé“ (verrücktes Schloss)', w: ['„Petit Palais“', '„Maison Folle“', '„Belle Époque“'], info: 'Viele Pariser fanden die Formen zunächst verrückt.' },
+    { b: 'samaritaine', q: 'Welche Konstruktion steckt hinter der Samaritaine?', a: 'Ein Stahlskelett mit großem Glasdach', w: ['Ein Holzfachwerk', 'Massive Natursteinmauern', 'Eine Betonkuppel'], info: 'Verziert mit farbigen Emaille-Schildern.' },
+    { b: 'samaritaine', q: 'Was ist La Samaritaine?', a: 'Ein Kaufhaus', w: ['Ein Bahnhof', 'Ein Theater', 'Eine Kirche'], info: 'Frantz Jourdain baute das Kaufhaus 1905–1910 aus.' },
+    { b: 'lavirotte', q: 'Was ziert die Fassade des Immeuble Lavirotte?', a: 'Glasierte Keramik mit üppigen Ornamenten', w: ['Aluminium-Nieten', 'Trencadís-Mosaik', 'Sgraffito-Malerei'], info: 'Die Keramik stammt von Alexandre Bigot.' },
+    { b: null, q: 'Wie hieß die Pariser Galerie, die dem Stil seinen französischen Namen gab?', a: '„Maison de l’Art Nouveau“', w: ['„Galerie Jugend“', '„Secession“', '„Modernisme“'], info: 'Siegfried Bing eröffnete die Galerie 1895.' },
+    { b: 'grandpalais', q: 'Für welches Ereignis wurde der Grand Palais gebaut?', a: 'Für die Weltausstellung 1900', w: ['Für die Olympischen Spiele 1924', 'Für eine Kaiserkrönung', 'Für die Eröffnung der Métro'], info: 'Die Weltausstellung machte den Jugendstil international bekannt.' },
+    { b: 'grandpalais', q: 'Woraus besteht das riesige Dach der Haupthalle des Grand Palais?', a: 'Aus Glas und Eisen', w: ['Aus Kupferplatten', 'Aus Dachziegeln', 'Aus Holzschindeln'], info: 'Eines der größten Glasdächer seiner Zeit.' },
+  ],
+  BA: [
+    { b: 'batllo', q: 'Wie heißt die Mosaiktechnik an der Fassade der Casa Batlló?', a: 'Trencadís', w: ['Sgraffito', 'Majolika', 'Terrazzo'], info: 'Mosaik aus zerbrochenen Keramik- und Glasscherben.' },
+    { b: 'batllo', q: 'Woran erinnert das Dach der Casa Batlló?', a: 'An einen Drachenrücken', w: ['An einen Schiffsrumpf', 'An einen Bienenkorb', 'An eine Krone'], info: 'Oft gedeutet als Legende des heiligen Georg und des Drachen.' },
+    { b: 'mila', q: 'Welchen Spitznamen hat die Casa Milà?', a: '„La Pedrera“ (der Steinbruch)', w: ['„Casa dels Ossos“', '„La Sagrada“', '„El Drac“'], info: 'Wegen der wellenförmigen Fassade aus Naturstein.' },
+    { b: 'mila', q: 'Was steht auf dem Dach der Casa Milà?', a: 'Skulpturale Schornsteine wie Krieger', w: ['Eine Glaskuppel', 'Ein Glockenturm', 'Eine Windmühle'], info: 'Gaudí machte selbst Schornsteine zu Kunstwerken.' },
+    { b: 'palau', q: 'Was befindet sich über dem Konzertsaal des Palau de la Música?', a: 'Ein Oberlicht aus buntem Glas', w: ['Ein Uhrturm', 'Die Orgelpfeifen', 'Ein Dachgarten'], info: 'Es hat die Form einer umgekehrten Kuppel.' },
+    { b: 'palau', q: 'Für wen wurde der Palau de la Música Catalana gebaut?', a: 'Für den Chor „Orfeó Català“', w: ['Für den FC Barcelona', 'Für das Opernhaus Liceu', 'Für die Universität'], info: 'Ein Konzerthaus für den katalanischen Gesangsverein.' },
+    { b: 'santpau', q: 'Was war das Hospital de Sant Pau?', a: 'Ein Krankenhaus', w: ['Eine Universität', 'Ein Bahnhof', 'Eine Markthalle'], info: 'Viele einzelne Pavillons in Gärten sollten die Heilung fördern.' },
+    { b: 'santpau', q: 'Wer entwarf Palau de la Música und Hospital de Sant Pau?', a: 'Lluís Domènech i Montaner', w: ['Antoni Gaudí', 'Josep Puig i Cadafalch', 'Josep Maria Jujol'], info: 'Beide sind seit 1997 UNESCO-Welterbe.' },
+    { b: 'parkguell', q: 'Wer war der Auftraggeber des Park Güell?', a: 'Eusebi Güell', w: ['Josep Batlló', 'Pere Milà', 'Ernest Solvay'], info: 'Der Industrielle Güell war Gaudís wichtigster Förderer.' },
+    { b: 'parkguell', q: 'Was ist im Park Güell mit Trencadís überzogen?', a: 'Eine lange, geschwungene Sitzbank', w: ['Ein Glasdach', 'Eine Stahlbrücke', 'Ein Uhrturm'], info: 'Die Bank umrahmt die große Terrasse über der Säulenhalle.' },
+    { b: null, q: 'Wie heißt die katalanische Variante des Jugendstils?', a: 'Modernisme', w: ['Secession', 'Art Nouveau', 'Stile Liberty'], info: '„Stile Liberty“ ist der italienische Name.' },
+    { b: null, q: 'An welcher Prachtstraße stehen Casa Batlló und Casa Milà?', a: 'Passeig de Gràcia', w: ['La Rambla', 'Avinguda Diagonal', 'Via Laietana'], info: 'Ein Abschnitt heißt „Manzana de la Discordia“ – Block der Zwietracht.' },
+  ],
+  GL: [
+    { b: 'gsa', q: 'Was ist der Glasgow School of Art in den letzten Jahren passiert?', a: 'Sie brannte 2014 und 2018 schwer', w: ['Sie wurde 1970 abgerissen', 'Sie wurde zum Hotel umgebaut', 'Sie wurde überflutet'], info: 'Der Wiederaufbau ist ein großes Thema der Denkmalpflege.' },
+    { b: 'gsa', q: 'Wer entwarf die Glasgow School of Art?', a: 'Charles Rennie Mackintosh', w: ['Victor Horta', 'Joseph Maria Olbrich', 'Peter Behrens'], info: 'Mackintosh gewann 1896 den Wettbewerb.' },
+    { b: 'gsa', q: 'Was kennzeichnet die Nordfassade der Glasgow School of Art?', a: 'Riesige Atelierfenster', w: ['Eine Glaskuppel', 'Ein Mosaikfries', 'Zwiebeltürme'], info: 'Nordlicht ist gleichmäßig – ideal zum Malen.' },
+    { b: 'willow', q: 'Welches Motiv zieht sich durch die Willow Tea Rooms?', a: 'Die Weide', w: ['Die Distel', 'Die Eiche', 'Die Lilie'], info: '„Sauchiehall Street“ bedeutet „Weidenallee“.' },
+    { b: 'willow', q: 'Wer gab die Willow Tea Rooms in Auftrag?', a: 'Kate Cranston', w: ['Margaret Macdonald', 'Queen Victoria', 'Frances Macdonald'], info: 'Die Unternehmerin betrieb mehrere Teestuben in Glasgow.' },
+    { b: 'willow', q: 'Wie heißt der prunkvollste Raum der Willow Tea Rooms?', a: '„Salon de Luxe“', w: ['„Grand Hall“', '„Blue Parlour“', '„Rose Boudoir“'], info: 'Mit silbernen Möbeln und Spiegelglas.' },
+    { b: 'hillhouse', q: 'Für wen wurde das Hill House gebaut?', a: 'Für den Verleger Walter Blackie', w: ['Für Kate Cranston', 'Für Thomas Lipton', 'Für Andrew Carnegie'], info: 'Außen schlichter grauer Rauputz, innen geometrische Details.' },
+    { b: 'hillhouse', q: 'Wie wird das Hill House heute vor Regen geschützt?', a: 'Durch eine riesige Hülle aus Stahlgitter', w: ['Durch eine Glaskuppel', 'Es wurde ins Museum versetzt', 'Durch eine Ziegelverkleidung'], info: 'Die „Hill House Box“ lässt die feuchten Mauern trocknen.' },
+    { b: null, q: 'Wer gehörte zu den „Glasgow Four“?', a: 'Mackintosh, Margaret und Frances Macdonald, Herbert MacNair', w: ['Klimt, Moser, Hoffmann, Wagner', 'Horta, Hankar, van de Velde, Strauven', 'Gaudí, Jujol, Güell, Batlló'], info: 'Die vier prägten den „Glasgow Style“.' },
+    { b: 'scotlandstreet', q: 'Was war die Scotland Street School?', a: 'Eine Schule', w: ['Eine Kirche', 'Ein Bahnhof', 'Eine Brauerei'], info: 'Auffällig sind die verglasten Treppentürme.' },
+    { b: 'queenscross', q: 'Welches ist die einzige ausgeführte Kirche von Mackintosh?', a: 'Queen’s Cross Church', w: ['Glasgow Cathedral', 'St Mungo’s', 'St Andrew’s'], info: 'Heute Sitz der Charles Rennie Mackintosh Society.' },
+    { b: 'lighthouse', q: 'Was war „The Lighthouse“ in Glasgow ursprünglich?', a: 'Das Gebäude der Zeitung „Glasgow Herald“', w: ['Ein Leuchtturm', 'Ein Bahnhof', 'Eine Teestube'], info: 'Der Turm enthielt einen Wassertank für den Brandschutz.' },
+  ],
+  DA: [
+    { b: 'elh', q: 'Was steht links und rechts vom Eingang des Ernst-Ludwig-Hauses?', a: 'Die Figuren „Mann und Weib“', w: ['Zwei Löwen', 'Zwei Engel', 'Die Göttin Athene'], info: 'Die monumentalen Figuren schuf Ludwig Habich.' },
+    { b: 'elh', q: 'Welche Inschrift steht über dem Portal des Ernst-Ludwig-Hauses?', a: '„Seine Welt zeige der Künstler, die niemals war noch jemals sein wird“', w: ['„Der Zeit ihre Kunst, der Kunst ihre Freiheit“', '„Ornament ist Verbrechen“', '„Form folgt Funktion“'], info: 'Der Spruch stammt von Hermann Bahr.' },
+    { b: 'elh', q: 'Wozu diente das Ernst-Ludwig-Haus?', a: 'Als Atelierhaus der Künstler', w: ['Als Wohnsitz des Großherzogs', 'Als Kirche', 'Als Bahnhof'], info: 'Heute ist darin das Museum Künstlerkolonie.' },
+    { b: 'hochzeitsturm', q: 'Woran erinnert die Spitze des Hochzeitsturms?', a: 'An eine Hand mit fünf Fingern', w: ['An eine Krone', 'An eine Zwiebel', 'An eine Weltkugel'], info: 'Daher auch der Spitzname „Fünffingerturm“.' },
+    { b: 'hochzeitsturm', q: 'Welcher Anlass steht hinter dem Hochzeitsturm?', a: 'Die Hochzeit von Großherzog Ernst Ludwig (1905)', w: ['Ein gewonnener Krieg', 'Die Weltausstellung 1900', 'Die Stadtgründung'], info: 'Ein Geschenk der Stadt Darmstadt an das Brautpaar.' },
+    { b: 'behrens', q: 'Was war Peter Behrens, bevor er sein Haus baute?', a: 'Maler und Grafiker', w: ['Ingenieur', 'Bankier', 'Bildhauer'], info: 'Das Haus Behrens ist sein erstes Bauwerk.' },
+    { b: 'behrens', q: 'Welches spätere Bauwerk von Behrens gilt als Ikone der Industriearchitektur?', a: 'Die AEG-Turbinenhalle in Berlin', w: ['Das Fagus-Werk', 'Das Bauhaus Dessau', 'Das Chilehaus'], info: 'Gebaut 1909 – der Schritt vom Jugendstil zur Moderne.' },
+    { b: null, q: 'Wer gründete 1899 die Künstlerkolonie Mathildenhöhe?', a: 'Großherzog Ernst Ludwig von Hessen', w: ['Kaiser Wilhelm II.', 'Otto Wagner', 'Georg Hirth'], info: 'Er wollte Kunst und Wirtschaft in Hessen fördern.' },
+    { b: null, q: 'Wie hieß die große Ausstellung auf der Mathildenhöhe 1901?', a: '„Ein Dokument deutscher Kunst“', w: ['„Der Zeit ihre Kunst“', '„Kunst und Industrie“', '„Jugend 1901“'], info: 'Die Künstlerhäuser selbst waren die Ausstellungsstücke.' },
+    { b: null, q: 'Seit wann ist die Mathildenhöhe UNESCO-Welterbe?', a: 'Seit 2021', w: ['Seit 2000', 'Seit 1997', 'Seit 2014'], info: 'Eines der jüngsten Welterbe-Stätten Deutschlands.' },
+    { b: 'ausstellung', q: 'Welches Gebäude errichtete Olbrich 1908 direkt neben dem Hochzeitsturm?', a: 'Ein Ausstellungsgebäude', w: ['Einen Bahnhof', 'Ein Theater', 'Ein Hallenbad'], info: 'Turm und Ausstellungshallen bilden die Stadtkrone.' },
+    { b: null, q: 'Woher kam Joseph Maria Olbrich nach Darmstadt?', a: 'Aus Wien', w: ['Aus Glasgow', 'Aus Brüssel', 'Aus Paris'], info: 'Er hatte dort das Secessionsgebäude gebaut.' },
+  ],
+  RI: [
+    { b: 'alb13', q: 'Welcher berühmte Filmregisseur war der Sohn von Michail Eisenstein?', a: 'Sergei Eisenstein', w: ['Fritz Lang', 'Friedrich Murnau', 'Charlie Chaplin'], info: 'Bekannt durch „Panzerkreuzer Potemkin“ (1925).' },
+    { b: 'alb2a', q: 'Was ist typisch für Eisensteins Fassaden in der Alberta iela?', a: 'Üppiger Schmuck: Masken, Köpfe, Tiere', w: ['Schlichter grauer Putz', 'Aluminium-Nieten', 'Trencadís-Mosaik'], info: 'Dazu kommen stark dekorierte Giebel.' },
+    { b: 'eliz10b', q: 'Warum hat Riga so viele Jugendstilbauten?', a: 'Die Stadt wuchs um 1900 sehr schnell', w: ['Wiederaufbau nach einem Erdbeben', 'Ein Gesetz schrieb den Stil vor', 'Wegen einer Weltausstellung'], info: 'Fast alle Neubauten entstanden im damals modernen Stil.' },
+    { b: null, q: 'Wie viele Gebäude der Rigaer Innenstadt sind im Jugendstil?', a: 'Etwa ein Drittel', w: ['Etwa 5 Prozent', 'Fast alle', 'Nur ein Dutzend'], info: 'Riga hat eine der größten Jugendstil-Sammlungen der Welt.' },
+    { b: 'alb12', q: 'Was befindet sich heute in der Alberta iela 12?', a: 'Das Rigaer Jugendstilmuseum', w: ['Das Rathaus', 'Die Oper', 'Ein Bahnhof'], info: 'Eine originale Wohnung von 1903 ist zu besichtigen.' },
+    { b: 'alb12', q: 'Wer entwarf das Haus Alberta iela 12 und wohnte selbst darin?', a: 'Konstantīns Pēkšēns', w: ['Michail Eisenstein', 'Joseph Maria Olbrich', 'Victor Horta'], info: 'Pēkšēns war einer der produktivsten Architekten Rigas.' },
+    { b: null, q: 'Zu welchem Staat gehörte Riga um 1900?', a: 'Zum Russischen Kaiserreich', w: ['Zum Deutschen Kaiserreich', 'Zu Schweden', 'Zu Österreich-Ungarn'], info: 'Lettland wurde erst 1918 unabhängig.' },
+    { b: null, q: 'Welche lettische Stilrichtung entstand parallel zum Jugendstil?', a: 'Die Nationalromantik', w: ['Der Modernisme', 'Die Secession', 'Der Glasgow Style'], info: 'Sie griff Motive der lettischen Volkskunst auf.' },
+    { b: null, q: 'Seit wann ist das historische Zentrum Rigas UNESCO-Welterbe?', a: 'Seit 1997', w: ['Seit 2021', 'Seit 2000', 'Seit 1984'], info: 'Auch wegen der einzigartigen Jugendstilbauten.' },
+    { b: null, q: 'Welches Jubiläum feierte Riga 1901?', a: '700 Jahre Stadtgründung', w: ['500 Jahre Stadtgründung', '1000 Jahre Stadtgründung', '100 Jahre Hanse-Beitritt'], info: 'Riga wurde 1201 gegründet.' },
+    { b: 'alb13', q: 'In welcher Straße stehen besonders viele Eisenstein-Fassaden?', a: 'Alberta iela', w: ['Brīvības iela', 'Kaļķu iela', 'Tērbatas iela'], info: 'Die Straße gilt als Freilichtmuseum des Jugendstils.' },
+    { b: 'eliz10b', q: 'Welchen Beruf hatte Michail Eisenstein hauptsächlich?', a: 'Bauingenieur in der Stadtverwaltung', w: ['Maler', 'Filmregisseur', 'Bildhauer'], info: 'Seine Fassaden entwarf er neben seinem Beruf.' },
+  ],
+};
+
+// Fragen für Ereigniskarten (Multiple Choice)
+export const EVENT_QUESTIONS = {
+  historismus: [
+    { q: 'Was unterscheidet den Jugendstil vom Historismus?', a: 'Er sucht neue, naturinspirierte Formen statt alte Stile nachzuahmen', w: ['Er kopiert gotische Kathedralen', 'Er verzichtet auf jedes Ornament', 'Er verwendet nur antike Säulenordnungen'] },
+    { q: 'Wie geht der Jugendstil mit Eisen und Glas um?', a: 'Er zeigt die Materialien offen und macht sie zum Schmuck', w: ['Er versteckt sie hinter Stuck', 'Er verbietet sie', 'Er nutzt sie nur für Fabriken'] },
+    { q: 'Was bedeutet „Gesamtkunstwerk“ im Jugendstil?', a: 'Gebäude, Möbel und Details werden einheitlich gestaltet', w: ['Ein Gebäude im Stil aller Epochen', 'Ein Haus, das nur aus Kunstwerken besteht', 'Ein Gemälde über die ganze Fassade'] },
+    { q: 'Woran orientierte sich der Historismus?', a: 'An Baustilen vergangener Epochen (Neugotik, Neorenaissance …)', w: ['An Pflanzen und Naturformen', 'An reinen geometrischen Grundformen', 'An japanischen Holzschnitten'] },
+  ],
+  jugend: [
+    { q: 'Woher kommt der Name „Jugendstil“?', a: 'Von der Münchner Zeitschrift „Jugend“', w: ['Vom jungen Alter der Architekten', 'Von der Wiener Jugendbewegung', 'Vom Architekten Karl Jugend'] },
+    { q: 'In welchem Jahr erschien die Zeitschrift „Jugend“ zum ersten Mal?', a: '1896', w: ['1871', '1900', '1914'] },
+    { q: 'Wie heißt der Jugendstil in Frankreich und Belgien?', a: 'Art Nouveau', w: ['Modernisme', 'Secession', 'Stile Liberty'] },
+  ],
+};
+
+export const EVENTS = [
+  { id: 'weltausstellung', title: 'Weltausstellung', sub: 'Paris 1900', flavor: 'Ganz Europa schaut nach Paris.', text: 'Ziehe sofort nach Paris und mache dort deine Prüfung.' },
+  { id: 'secession', title: 'Gründung der Wiener Secession', sub: '1897', flavor: 'Junge Künstler sagen sich vom Künstlerhaus los.', text: 'Ziehe 2 Felder in Richtung Wien.' },
+  { id: 'streik', title: 'Bahnstreik', sub: '', flavor: 'Die Lokomotiven stehen still.', text: 'Setze eine Runde aus.' },
+  { id: 'historismus', title: 'Historismus-Kritiker', sub: '', flavor: '„Das ist doch alles nur Mode!“', text: 'Beantworte die Frage zum Historismus. Falsch: Gib eine Karte ab.' },
+  { id: 'kaffeehaus', title: 'Wiener Kaffeehaus', sub: '', flavor: 'Eine Melange, ein Stück Torte, neue Kraft.', text: 'Würfle sofort noch einmal.' },
+  { id: 'jugend', title: 'Die Zeitschrift „Jugend“', sub: 'München 1896', flavor: 'Ein neues Magazin gibt einer Epoche ihren Namen.', text: 'Beantworte die Frage. Richtig: 3 Felder vor.' },
+  { id: 'nachtzug', title: 'Nachtzug', sub: '', flavor: 'Schlafwagen, erste Klasse.', text: 'Ziehe direkt bis zur nächsten Stadt.' },
+  { id: 'mathildenhoehe', title: 'Ausstellung auf der Mathildenhöhe', sub: 'Darmstadt 1901', flavor: '„Ein Dokument deutscher Kunst“ öffnet seine Türen.', text: 'Alle Spieler ziehen 1 Feld in Richtung Darmstadt.' },
+  { id: 'sturm', title: 'Sturm über der Nordsee', sub: '', flavor: 'Kein Schiff verlässt den Hafen.', text: 'Die Schiffsroute ist bis zu deinem nächsten Zug gesperrt.' },
+  { id: 'maezen', title: 'Ein Mäzen', sub: '', flavor: 'Ein reicher Bauherr fördert dein Studium.', text: 'Nimm dir eine Karte aus einer Stadt, in der du schon geprüft wurdest – ohne Frage.' },
+  { id: 'material', title: 'Materialprüfung', sub: '', flavor: 'Der Professor will Fakten hören.', text: 'Erkenne 2 Bauwerke mit sichtbarem Eisen und Glas. Pro richtiger Antwort: 1 Feld vor.' },
+  { id: 'duell', title: 'Ornament-Duell', sub: '', flavor: 'Wer kennt die Bauwerke besser?', text: 'Fordere einen Mitspieler heraus. Wer zuerst die richtige Stadt nennt: 2 Felder vor.' },
+];

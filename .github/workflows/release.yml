@@ -1,0 +1,26 @@
+# Baut bei jedem Versions-Tag (z. B. v0.2.0) den Windows-Installer und
+# veröffentlicht ihn als GitHub Release. Installierte Spiele holen sich
+# dieses Update automatisch beim nächsten Start.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node tools/simulate.mjs 200
+      - run: npx electron-builder --win --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
