@@ -45,7 +45,16 @@ function createSplash() {
   splash.loadFile(path.join(__dirname, 'src', 'update.html'));
 }
 
+// Protokoll der Update-Prüfung: %APPDATA%\Grand Tour 1900\update.log
+function fileLogger() {
+  const fs = require('node:fs');
+  const file = path.join(app.getPath('userData'), 'update.log');
+  const write = lvl => msg => { try { fs.appendFileSync(file, `${new Date().toISOString()} [${lvl}] v${app.getVersion()} ${msg}\n`); } catch { /* egal */ } };
+  return { info: write('info'), warn: write('warn'), error: write('error'), debug: () => {} };
+}
+
 function checkForUpdates() {
+  autoUpdater.logger = fileLogger();
   createSplash();
   const status = s => { if (splash && !splash.isDestroyed()) splash.webContents.send('update-status', s); };
   let decided = false;
